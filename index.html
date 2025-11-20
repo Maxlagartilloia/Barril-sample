@@ -25,8 +25,8 @@
     :root {
       --bg-main: #050509;
       --bg-card: #121218;
-      --accent: #fbbf24;       /* amarillo */
-      --accent-strong: #f97316;/* naranja */
+      --accent: #fbbf24;         /* amarillo */
+      --accent-strong: #f97316;  /* naranja */
       --text-muted: #9ca3af;
     }
 
@@ -77,7 +77,6 @@
         0 0 18px rgba(220,38,38,0.7);
     }
 
-    /* Cuadro de imagen de plato */
     .image-box {
       position: relative;
       width: 100%;
@@ -94,7 +93,7 @@
       max-width: 100%;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* 🔥 siempre ajustada al cuadro */
+      object-fit: cover; /* siempre ajustada al cuadro */
       border-radius: 0.6rem;
       box-shadow: 0 6px 16px rgba(0,0,0,0.7);
     }
@@ -114,31 +113,6 @@
       transition: transform 0.25s ease-out;
     }
 
-    /* Logo del HEADER (esquina superior) */
-    .logo-brand {
-      height: clamp(2.6rem, 5vw, 3.2rem);
-    }
-    @media (min-width: 768px) {
-      .logo-brand {
-        height: clamp(3.2rem, 4vw, 3.8rem);
-      }
-    }
-    @media (min-width: 1024px) {
-      .logo-brand {
-        height: 4rem;
-      }
-    }
-
-    /* Logo / imagen grande del HERO */
-    .hero-logo {
-      width: min(70vw, 260px);  /* cel */
-    }
-    @media (min-width: 768px) {
-      .hero-logo {
-        width: min(45vw, 320px); /* iPad y arriba */
-      }
-    }
-
     @media (max-width: 768px) {
       .hero-title {
         font-size: 2.6rem;
@@ -153,12 +127,13 @@
   <header class="glass-header text-white sticky top-0 z-50 border-b border-slate-800/70">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
 
-      <!-- Logo SOLO (sin texto adicional) -->
-      <a href="#" onclick="showPage('home')" class="flex items-center gap-3">
+      <!-- Logo SOLO (sin texto externo) -->
+      <a href="#" onclick="showPage('home')" class="flex items-center justify-center">
+        <!-- Ajustes responsivos del logo -->
         <img
           src="logo.png"
           alt="Logo Punto Cero al Barril"
-          class="logo-brand w-auto object-contain"
+          class="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain mx-auto"
         />
       </a>
 
@@ -197,7 +172,7 @@
       <div class="max-w-6xl mx-auto px-4 py-10 md:py-16 grid md:grid-cols-2 gap-8 items-center">
 
         <!-- Texto -->
-        <div class="space-y-4 md:space-y-6 text-center md:text-left">
+        <div class="space-y-4 md:space-y-6">
           <p class="title-font text-[var(--accent-strong)] text-sm tracking-[0.3em] uppercase">
             Costillas · Panceta · Pollo al barril
           </p>
@@ -209,7 +184,7 @@
             Cocción lenta, fuego real y salsas de la casa que te van a amarrar al barril. 🔥
           </p>
 
-          <div class="flex flex-wrap justify-center md:justify-start gap-3">
+          <div class="flex flex-wrap gap-3">
             <a href="#menu"
               class="btn-main px-5 py-2.5 bg-[var(--accent)] hover:bg-yellow-400 text-black font-semibold rounded-full text-sm md:text-base inline-flex items-center gap-2">
               <i class="fa-solid fa-utensils text-lg"></i>
@@ -246,19 +221,13 @@
           </div>
         </div>
 
-        <!-- HERO: logo / imagen grande centrada -->
-        <div class="relative flex justify-center md:justify-end">
-          <div class="rounded-3xl overflow-hidden shadow-2xl border border-[var(--accent)]/40 bg-black/40 px-6 py-6 flex items-center justify-center">
-            <!-- usa hero.jpg o el PNG del logo grande -->
-            <img
-              src="hero.jpg"
-              alt="Punto Cero al Barril"
-              class="hero-logo object-contain mx-auto"
-            />
+        <!-- Hero Imagen (hero.jpg en raíz) -->
+        <div class="relative">
+          <div class="rounded-3xl overflow-hidden shadow-2xl border border-[var(--accent)]/40">
+            <img src="hero.jpg" alt="Costillas y asados de Punto Cero al Barril" class="w-full h-72 md:h-96 object-cover" />
           </div>
           <div class="pointer-events-none absolute -inset-4 -z-10 bg-gradient-to-tr from-[var(--accent-strong)]/10 via-transparent to-[var(--accent)]/10 blur-3xl opacity-70"></div>
         </div>
-
       </div>
     </section>
 
@@ -266,7 +235,7 @@
     <section id="nosotros" class="py-10 md:py-14">
       <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
         <div class="space-y-4 md:space-y-5">
-          <h2 class="text-2xl md:3xl font-bold">
+          <h2 class="text-2xl md:text-3xl font-bold">
             Punto Cero al Barril, donde el fuego manda 🔥
           </h2>
           <p class="text-sm md:text-base text-[var(--text-muted)]">
@@ -300,8 +269,8 @@
               <p>Barrio Las Vegas, calle Pablo Milanés.</p>
               <p>Del gimnasio, 100 metros más adelante.</p>
               <a href="https://maps.app.goo.gl/qZkmyBKGfm7tMsEi6?g_st=ipc"
-                target="_blank"
-                class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-xs mt-1">
+                 target="_blank"
+                 class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-xs mt-1">
                 <i class="fa-solid fa-map-location-dot"></i>
                 Ver en Google Maps
               </a>
@@ -378,8 +347,8 @@
             Puedes llegar directamente usando Google Maps con el siguiente enlace:
           </p>
           <a href="https://maps.app.goo.gl/qZkmyBKGfm7tMsEi6?g_st=ipc"
-            target="_blank"
-            class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-sm">
+             target="_blank"
+             class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-sm">
             <i class="fa-solid fa-map-location-dot"></i>
             Abrir ubicación en Google Maps
           </a>
@@ -417,8 +386,8 @@
               </p>
               <p>098 802 5075</p>
               <a href="https://wa.me/593988025075?text=Hola%20quiero%20informaci%C3%B3n%20de%20Punto%20Cero%20al%20Barril"
-                target="_blank"
-                class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-xs">
+                 target="_blank"
+                 class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-xs">
                 <i class="fa-brands fa-whatsapp"></i>
                 Enviar mensaje ahora
               </a>
@@ -460,8 +429,8 @@
             o reservar para hoy.
           </p>
           <a href="https://wa.me/593988025075?text=Hola%20quiero%20hacer%20un%20pedido%20en%20Punto%20Cero%20al%20Barril"
-            target="_blank"
-            class="btn-main inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-full text-sm md:text-base">
+             target="_blank"
+             class="btn-main inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-full text-sm md:text-base">
             <i class="fa-brands fa-whatsapp text-lg"></i>
             Hacer pedido por WhatsApp
           </a>
@@ -493,6 +462,7 @@
       </div>
       
       <div id="cart-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- COLUMNA 1 -->
         <div>
           <h3 class="text-xl md:text-2xl text-white mb-5 product-name">
             1. Modalidad y datos
@@ -531,6 +501,7 @@
           </div>
 
           <form id="order-form" class="space-y-4">
+            <!-- DINE IN -->
             <div id="dine-in-fields" class="bg-white p-5 rounded-lg shadow-xl text-gray-800">
               <div class="mb-4">
                 <label for="table-number" class="block text-gray-700 font-bold mb-2">
@@ -560,6 +531,7 @@
               </div>
             </div>
 
+            <!-- DELIVERY -->
             <div id="delivery-fields" class="bg-white p-5 rounded-lg shadow-xl text-gray-800 hidden">
               <div class="mb-3">
                 <label for="name" class="block text-gray-700 font-bold mb-2">
@@ -622,6 +594,7 @@
           </form>
         </div>
 
+        <!-- COLUMNA 2 -->
         <div>
           <div class="flex justify-between items-center mb-5">
             <h3 class="text-xl md:text-2xl text-white product-name">
@@ -641,6 +614,7 @@
             id="checkout-summary"
             class="bg-[var(--bg-card)] p-5 rounded-lg shadow-xl border border-[var(--accent)]/50 text-sm md:text-base"
           >
+            <!-- Resumen generado por JS -->
           </div>
           
           <div class="bg-[var(--bg-card)] p-5 rounded-lg shadow-xl mt-7 border border-[var(--accent-strong)]/60 text-sm">
@@ -673,10 +647,59 @@
     </div>
   </main>
 
+  <!-- JUEGO MIENTRAS ESPERAS -->
+  <section id="juego-espera" class="py-10 bg-black/90 border-t border-slate-800 hidden">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-6">
+        <p class="title-font text-[var(--accent-strong)] text-sm tracking-[0.25em] uppercase mb-1">
+          Juego BBQ
+        </p>
+        <h2 class="text-2xl md:text-3xl font-bold mb-2">
+          Juega mientras preparamos tu pedido 🔥
+        </h2>
+        <p class="text-sm md:text-base text-[var(--text-muted)] max-w-2xl mx-auto">
+          Descubre las parejas de íconos BBQ en el menor tiempo posible.
+          Es solo para pasar el rato mientras llega tu carne al punto perfecto 😎.
+        </p>
+      </div>
+
+      <div class="bg-[var(--bg-card)] border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
+        <!-- Info -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-5 text-xs md:text-sm text-[var(--text-muted)]">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-stopwatch text-[var(--accent-strong)]"></i>
+            <span>Tiempo: <span id="game-time">00:00</span></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-shuffle text-[var(--accent-strong)]"></i>
+            <span>Movimientos: <span id="game-moves">0</span></span>
+          </div>
+          <button
+            id="game-restart"
+            type="button"
+            class="btn-main px-4 py-2 bg-[var(--accent)] hover:bg-yellow-400 text-black font-semibold rounded-full flex items-center gap-2 text-xs md:text-sm ml-auto"
+          >
+            <i class="fa-solid fa-rotate-right"></i>
+            Jugar de nuevo
+          </button>
+        </div>
+
+        <!-- GRID -->
+        <div id="game-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 md:gap-4">
+          <!-- Cartas generadas por JS -->
+        </div>
+
+        <p id="game-message" class="text-center text-xs md:text-sm text-[var(--text-muted)] mt-5">
+          Toca dos cartas para encontrar las parejas.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer
     id="footer-contact"
-    class="bg-black/95 text-[var(--text-muted)] pt-10 pb-7 mt-14 border-t border-slate-800 relative z-10 text-sm"
+    class="bg-black/95 text-[var(--text-muted)] pt-10 pb-7 border-t border-slate-800 relative z-10 text-sm"
   >
     <div class="max-w-6xl mx-auto px-4 text-center">
       <div class="grid md:grid-cols-3 gap-7 mb-6">
@@ -745,16 +768,16 @@
     </div>
   </div>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT PRINCIPAL -->
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Año en footer
+    // Año en el footer
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
       yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Productos (imágenes locales plato-1.jpg ... plato-5.jpg)
+    // 🔥 Productos usando archivos locales plato-1.jpg ... plato-5.jpg
     const products = [
       { id: 1, name: 'Costillas al Barril con Moro', price: 7.50, img: 'plato-1.jpg', desc: 'Tiernas costillas de cerdo asadas en barril, servidas con moro, papa frita, maduro, chorizo y salsas de la casa.' },
       { id: 2, name: 'Panceta Crujiente con Moro', price: 9.50, img: 'plato-2.jpg', desc: 'Panceta crocante acompañada de moro, papa frita, maduro, chorizo y salsas exclusivas de la casa.' },
@@ -763,7 +786,7 @@
       { id: 5, name: 'Bandeja Punto Cero (Picadita)', price: 22.00, img: 'plato-5.jpg', desc: 'Picadita para compartir (precio base). Pregunta por bandejas grandes: $32 y $52.' }
     ];
 
-    // DOM
+    // 📌 Referencias al DOM
     const productList           = document.getElementById('product-list');
     const cartCountEl          = document.getElementById('cart-count');
     const notificationModal    = document.getElementById('notification-modal');
@@ -788,11 +811,22 @@
     const tableNumberInput     = document.getElementById('table-number');
     const clientNameLocalInput = document.getElementById('client-name-local');
 
+    // 🎮 Juego
+    const gameSection   = document.getElementById('juego-espera');
+    const gameGrid      = document.getElementById('game-grid');
+    const gameTimeEl    = document.getElementById('game-time');
+    const gameMovesEl   = document.getElementById('game-moves');
+    const gameRestart   = document.getElementById('game-restart');
+    const gameMessageEl = document.getElementById('game-message');
+
+    // 🧠 Estado general
     let cart = {};
     let sharedLocation = null;
     let orderType = 'dineIn';
 
+    // Helpers
     function setInputRequired(input, isRequired) {
+      if (!input) return;
       input.required = isRequired;
       input.disabled = !isRequired;
     }
@@ -801,11 +835,14 @@
       return '$' + value.toFixed(2);
     }
 
+    // Cambiar modalidad (mesa / domicilio)
     function handleOrderTypeChange() {
-      orderType = document.querySelector('input[name="orderType"]:checked').value;
+      const checked = document.querySelector('input[name="orderType"]:checked');
+      orderType = checked ? checked.value : 'dineIn';
+
       sharedLocation = null;
-      locationStatus.textContent = '';
-      shareLocationBtn.disabled = (orderType === 'dineIn');
+      if (locationStatus) locationStatus.textContent = '';
+      if (shareLocationBtn) shareLocationBtn.disabled = (orderType === 'dineIn');
 
       if (orderType === 'dineIn') {
         dineInFields.classList.remove('hidden');
@@ -826,6 +863,7 @@
       }
     }
 
+    // Renderizar productos
     function renderProducts() {
       productList.innerHTML = '';
       products.forEach(product => {
@@ -862,6 +900,7 @@
       });
     }
 
+    // Carrito
     function addToCart(productId, quantity = 1) {
       const idStr = String(productId);
       if (cart[idStr]) {
@@ -932,6 +971,149 @@
       checkoutSummary.innerHTML = html;
     }
 
+    // 🎮 MINI JUEGO DE MEMORIA BBQ
+    const baseIcons = ['🔥', '🍖', '🥓', '🍗', '🥩', '🍟']; // 6 parejas
+    let deck = [];
+    let firstCard = null;
+    let secondCard = null;
+    let lockBoard = false;
+    let moves = 0;
+    let matchedPairs = 0;
+    let timerInterval = null;
+    let secondsElapsed = 0;
+    let gameStarted = false;
+
+    function formatTimeForGame(sec) {
+      const m = String(Math.floor(sec / 60)).padStart(2, '0');
+      const s = String(sec % 60).padStart(2, '0');
+      return m + ':' + s;
+    }
+
+    function startTimer() {
+      if (gameStarted) return;
+      gameStarted = true;
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        gameTimeEl.textContent = formatTimeForGame(secondsElapsed);
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function resetGameState() {
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+      moves = 0;
+      matchedPairs = 0;
+      secondsElapsed = 0;
+      gameStarted = false;
+      gameTimeEl.textContent = '00:00';
+      gameMovesEl.textContent = '0';
+      gameMessageEl.textContent = 'Toca dos cartas para encontrar las parejas.';
+      if (timerInterval) stopTimer();
+    }
+
+    function createDeck() {
+      deck = [...baseIcons, ...baseIcons]; // 12 cartas
+      // Fisher-Yates shuffle
+      for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+      }
+    }
+
+    function renderGame() {
+      createDeck();
+      resetGameState();
+      gameGrid.innerHTML = '';
+
+      deck.forEach((icon, index) => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className =
+          'relative aspect-square rounded-xl bg-slate-900/80 border border-slate-700 flex items-center justify-center text-3xl md:text-4xl text-white transition transform hover:-translate-y-0.5 hover:border-[var(--accent)]';
+        card.dataset.index = index;
+        card.dataset.icon = icon;
+        card.innerHTML = `
+          <span class="card-back opacity-0">${icon}</span>
+        `;
+        gameGrid.appendChild(card);
+      });
+    }
+
+    function flipCard(card) {
+      const back = card.querySelector('.card-back');
+      back.classList.remove('opacity-0');
+      back.classList.add('opacity-100');
+      card.classList.add('bg-slate-800', 'border-[var(--accent)]');
+    }
+
+    function hideCard(card) {
+      const back = card.querySelector('.card-back');
+      back.classList.remove('opacity-100');
+      back.classList.add('opacity-0');
+      card.classList.remove('bg-slate-800', 'border-[var(--accent)]');
+    }
+
+    function resetTurn() {
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+    }
+
+    function handleCardClick(e) {
+      const card = e.target.closest('button');
+      if (!card || lockBoard) return;
+      if (card === firstCard) return;
+
+      startTimer();
+      flipCard(card);
+
+      if (!firstCard) {
+        firstCard = card;
+        return;
+      }
+
+      secondCard = card;
+      lockBoard = true;
+      moves++;
+      gameMovesEl.textContent = String(moves);
+
+      const match = firstCard.dataset.icon === secondCard.dataset.icon;
+
+      if (match) {
+        firstCard.disabled = true;
+        secondCard.disabled = true;
+        matchedPairs++;
+        resetTurn();
+
+        if (matchedPairs === baseIcons.length) {
+          stopTimer();
+          gameMessageEl.textContent =
+            '¡Completaste el juego! Tu pedido debería estar cerca… 😋';
+          showNotification('🔥 ¡Juego completado! Gracias por esperar tu pedido de Punto Cero al Barril.');
+        }
+      } else {
+        setTimeout(() => {
+          hideCard(firstCard);
+          hideCard(secondCard);
+          resetTurn();
+        }, 700);
+      }
+    }
+
+    function startGame() {
+      if (!gameGrid) return;
+      renderGame();
+      gameGrid.removeEventListener('click', handleCardClick);
+      gameGrid.addEventListener('click', handleCardClick);
+    }
+
+    // Eventos en el listado de productos (cantidad + añadir)
     productList.addEventListener('click', (e) => {
       const card = e.target.closest('.product-card');
       if (!card) return;
@@ -958,20 +1140,23 @@
 
         const product = products.find(p => p.id == Number(id));
         const nombre = product ? product.name : 'Producto';
-        showNotification(`${quantity} ${nombre}(s) añadido(s) al carrito 🔥`);
+        showNotification(quantity + ' ' + nombre + '(s) añadido(s) al carrito 🔥');
         qtySpan.textContent = '1';
       }
     });
 
+    // Cambio de modalidad
     radioDineIn.addEventListener('change', handleOrderTypeChange);
     radioDelivery.addEventListener('change', handleOrderTypeChange);
 
+    // Vaciar carrito
     clearCartBtn.addEventListener('click', () => {
       cart = {};
       updateCartUI();
       showNotification('El carrito ha sido vaciado.');
     });
 
+    // Geolocalización para domicilio
     shareLocationBtn.addEventListener('click', () => {
       if (!navigator.geolocation) {
         locationStatus.textContent = 'La geolocalización no es soportada en este dispositivo.';
@@ -985,7 +1170,7 @@
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          sharedLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
+          sharedLocation = 'https://www.google.com/maps?q=' + latitude + ',' + longitude;
           locationStatus.textContent = '✅ Ubicación añadida al pedido.';
           shareLocationBtn.classList.remove('bg-yellow-600');
           shareLocationBtn.classList.add('bg-green-600');
@@ -998,6 +1183,7 @@
       );
     });
 
+    // Enviar pedido por WhatsApp
     orderForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -1012,11 +1198,11 @@
       let total = 0;
       for (const id in cart) {
         const item = cart[id];
-        message += `• ${item.quantity}x - ${item.name}\n`;
+        message += '• ' + item.quantity + 'x - ' + item.name + '\n';
         total += item.price * item.quantity;
       }
 
-      message += `\nTotal aproximado: *${formatMoney(total)}*\n\n`;
+      message += '\nTotal aproximado: *' + formatMoney(total) + '*\n\n';
 
       if (currentOrderType === 'dineIn') {
         const mesa = (tableNumberInput.value || '').trim();
@@ -1028,9 +1214,9 @@
         }
 
         message += '*Modalidad:* Servir en mesa 🍽️\n';
-        message += `*Mesa:* ${mesa}\n`;
+        message += '*Mesa:* ' + mesa + '\n';
         if (nombreLocal) {
-          message += `*Nombre:* ${nombreLocal}\n`;
+          message += '*Nombre:* ' + nombreLocal + '\n';
         }
       } else {
         const name    = (nameInput.value || '').trim();
@@ -1043,11 +1229,11 @@
         }
 
         message += '*Modalidad:* Entrega a domicilio 🛵\n';
-        message += `*Nombre:* ${name}\n`;
-        message += `*WhatsApp:* ${phone}\n`;
-        message += `*Dirección:* ${address}\n`;
+        message += '*Nombre:* ' + name + '\n';
+        message += '*WhatsApp:* ' + phone + '\n';
+        message += '*Dirección:* ' + address + '\n';
         if (sharedLocation) {
-          message += `*Ubicación (Maps):* ${sharedLocation}\n`;
+          message += '*Ubicación (Maps):* ' + sharedLocation + '\n';
         } else {
           message += '*Ubicación:* No enviada (puedo enviar luego por chat).\n';
         }
@@ -1055,11 +1241,22 @@
 
       message += '\nPor favor, confirmen el total y el tiempo estimado. 🙏🔥';
 
+      // Número real de WhatsApp del local
       const whatsappNumber = '593988025075';
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
 
       window.open(whatsappUrl, '_blank');
 
+      // Mostrar juego mientras espera
+      if (gameSection) {
+        gameSection.classList.remove('hidden');
+        startGame();
+        setTimeout(() => {
+          gameSection.scrollIntoView({ behavior: 'smooth' });
+        }, 400);
+      }
+
+      // Reset después de enviar
       cart = {};
       sharedLocation = null;
       orderForm.reset();
@@ -1069,10 +1266,11 @@
       showNotification('¡Pedido enviado! Revisa tu WhatsApp para la confirmación de Punto Cero al Barril.');
     });
 
+    // Navegación entre "páginas"
     const pages = document.querySelectorAll('main');
-    window.showPage = (pageId) => {
+    window.showPage = function (pageId) {
       pages.forEach(page => page.classList.add('hidden'));
-      const target = document.getElementById(`${pageId}-page`);
+      const target = document.getElementById(pageId + '-page');
       if (target) {
         target.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1082,6 +1280,7 @@
       }
     };
 
+    // Notificaciones
     function showNotification(message) {
       notificationMessage.textContent = message;
       notificationModal.classList.remove('opacity-0', 'pointer-events-none');
@@ -1097,6 +1296,13 @@
     notificationModal.addEventListener('click', (e) => {
       if (e.target === notificationModal) hideNotification();
     });
+
+    // Botón "Jugar de nuevo"
+    if (gameRestart) {
+      gameRestart.addEventListener('click', () => {
+        startGame();
+      });
+    }
 
     // Inicializar
     renderProducts();
