@@ -1,1 +1,1108 @@
-# Barril-sample
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punto Cero al Barril | Costillas, Asados y Cortes Premium</title>
+
+  <!-- SEO básico -->
+  <meta name="description" content="Punto Cero al Barril: costillas, panceta, pollo al barril, asados y cortes premium en el Barrio Las Vegas, calle Pablo Milanés, Shushufindi. Sabor al fuego con estilo." />
+  <meta name="keywords" content="punto cero al barril, costillas al barril, asados, cortes premium, Shushufindi, barrio Las Vegas" />
+  <meta name="author" content="Punto Cero al Barril" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-main: #050509;
+      --bg-card: #121218;
+      --accent: #fbbf24;       /* amarillo */
+      --accent-strong: #f97316;/* naranja */
+      --text-muted: #9ca3af;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: #f9fafb;
+      overflow-x: hidden;
+    }
+
+    .title-font {
+      font-family: "Bebas Neue", system-ui, sans-serif;
+      letter-spacing: 0.18em;
+    }
+
+    .glass-header {
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(3, 7, 18, 0.9));
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-main {
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 10px 30px rgba(248, 181, 0, 0.25);
+    }
+
+    .card-plato:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .card-plato {
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .product-name {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .grill-glow-text {
+      text-shadow:
+        0 0 4px rgba(255,165,0,0.8),
+        0 0 10px rgba(255,69,0,0.7),
+        0 0 18px rgba(220,38,38,0.7);
+    }
+
+    /* Cuadro de imagen de plato */
+    .image-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #111827;
+      padding: 0.75rem;
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+    .image-box img {
+      max-height: 100%;
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 🔥 siempre ajustada al cuadro */
+      border-radius: 0.6rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+    }
+
+    .product-card {
+      transition: all 0.25s ease-out;
+    }
+    .product-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.75);
+    }
+
+    #notification-modal {
+      transition: opacity 0.25s ease-out;
+    }
+    #notification-modal .modal-inner {
+      transition: transform 0.25s ease-out;
+    }
+
+    /* Logo del HEADER (esquina superior) */
+    .logo-brand {
+      height: clamp(2.6rem, 5vw, 3.2rem);
+    }
+    @media (min-width: 768px) {
+      .logo-brand {
+        height: clamp(3.2rem, 4vw, 3.8rem);
+      }
+    }
+    @media (min-width: 1024px) {
+      .logo-brand {
+        height: 4rem;
+      }
+    }
+
+    /* Logo / imagen grande del HERO */
+    .hero-logo {
+      width: min(70vw, 260px);  /* cel */
+    }
+    @media (min-width: 768px) {
+      .hero-logo {
+        width: min(45vw, 320px); /* iPad y arriba */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen">
+
+  <!-- HEADER -->
+  <header class="glass-header text-white sticky top-0 z-50 border-b border-slate-800/70">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+
+      <!-- Logo SOLO (sin texto adicional) -->
+      <a href="#" onclick="showPage('home')" class="flex items-center gap-3">
+        <img
+          src="logo.png"
+          alt="Logo Punto Cero al Barril"
+          class="logo-brand w-auto object-contain"
+        />
+      </a>
+
+      <!-- Navegación -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#hero" onclick="showPage('home')" class="hover:text-[var(--accent)] transition">Inicio</a>
+        <a href="#nosotros" onclick="showPage('home')" class="hover:text-[var(--accent)] transition">Nosotros</a>
+        <a href="#menu" onclick="showPage('home')" class="hover:text-[var(--accent)] transition">Menú</a>
+        <a href="#ubicacion" onclick="showPage('home')" class="hover:text-[var(--accent)] transition">Ubicación</a>
+        <a href="#contacto" onclick="showPage('home')" class="hover:text-[var(--accent)] transition">Contacto</a>
+      </nav>
+
+      <!-- Botón Pedido / Carrito -->
+      <button
+        id="cart-button"
+        onclick="showPage('checkout')"
+        class="relative btn-main bg-emerald-500 text-black px-4 py-2 rounded-full font-bold hover:bg-emerald-400 transition-colors flex items-center gap-2 shadow-lg text-xs sm:text-sm"
+        aria-label="Ver pedido actual"
+      >
+        <i class="fas fa-shopping-basket"></i>
+        <span class="hidden sm:inline">Pedido</span>
+        <span
+          id="cart-count"
+          class="absolute -top-2 -right-2 bg-[var(--accent)] text-black text-[10px] rounded-full h-5 w-5 flex items-center justify-center font-bold"
+        >0</span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- HOME PAGE -->
+  <main id="home-page" class="relative z-10">
+
+    <!-- HERO -->
+    <section id="hero" class="relative text-white">
+      <div class="max-w-6xl mx-auto px-4 py-10 md:py-16 grid md:grid-cols-2 gap-8 items-center">
+
+        <!-- Texto -->
+        <div class="space-y-4 md:space-y-6 text-center md:text-left">
+          <p class="title-font text-[var(--accent-strong)] text-sm tracking-[0.3em] uppercase">
+            Costillas · Panceta · Pollo al barril
+          </p>
+          <h1 class="hero-title text-3xl md:text-5xl font-extrabold leading-tight grill-glow-text product-name">
+            ¡El sabor ahumado es el Punto Cero!
+          </h1>
+          <p class="text-sm md:text-base text-[var(--text-muted)]">
+            Costillas al barril, panceta crujiente, picanha y bandejas para compartir.
+            Cocción lenta, fuego real y salsas de la casa que te van a amarrar al barril. 🔥
+          </p>
+
+          <div class="flex flex-wrap justify-center md:justify-start gap-3">
+            <a href="#menu"
+              class="btn-main px-5 py-2.5 bg-[var(--accent)] hover:bg-yellow-400 text-black font-semibold rounded-full text-sm md:text-base inline-flex items-center gap-2">
+              <i class="fa-solid fa-utensils text-lg"></i>
+              <span>Ver menú</span>
+            </a>
+
+            <a href="https://wa.me/593988025075?text=Hola%20quiero%20hacer%20un%20pedido%20en%20Punto%20Cero%20al%20Barril"
+              target="_blank"
+              class="px-5 py-2.5 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-black font-semibold rounded-full text-sm md:text-base transition">
+              Pedir por WhatsApp
+            </a>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 text-xs md:text-sm text-[var(--text-muted)] pt-3 md:pt-4">
+            <div class="space-y-1">
+              <p class="font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-location-dot text-[var(--accent)]"></i>
+                Ubicación
+              </p>
+              <p>Barrio Las Vegas, calle Pablo Milanés.</p>
+              <p>Del gimnasio, 100m más adelante.</p>
+            </div>
+            <div class="space-y-1">
+              <p class="font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-phone text-[var(--accent)]"></i>
+                Pedidos
+              </p>
+              <p>098 802 5075</p>
+              <p class="flex items-center gap-1">
+                <i class="fa-brands fa-instagram text-pink-500"></i>
+                @puntoceroalbarril
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO: logo / imagen grande centrada -->
+        <div class="relative flex justify-center md:justify-end">
+          <div class="rounded-3xl overflow-hidden shadow-2xl border border-[var(--accent)]/40 bg-black/40 px-6 py-6 flex items-center justify-center">
+            <!-- usa hero.jpg o el PNG del logo grande -->
+            <img
+              src="hero.jpg"
+              alt="Punto Cero al Barril"
+              class="hero-logo object-contain mx-auto"
+            />
+          </div>
+          <div class="pointer-events-none absolute -inset-4 -z-10 bg-gradient-to-tr from-[var(--accent-strong)]/10 via-transparent to-[var(--accent)]/10 blur-3xl opacity-70"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section id="nosotros" class="py-10 md:py-14">
+      <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4 md:space-y-5">
+          <h2 class="text-2xl md:3xl font-bold">
+            Punto Cero al Barril, donde el fuego manda 🔥
+          </h2>
+          <p class="text-sm md:text-base text-[var(--text-muted)]">
+            Somos un espacio creado para los amantes de la buena carne y el sabor intenso del barril y la parrilla.
+            Trabajamos con <strong>cortes seleccionados</strong> y una técnica de cocción lenta que mantiene la jugosidad
+            y potencia el sabor de cada plato.
+          </p>
+          <p class="text-sm md:text-base text-[var(--text-muted)]">
+            Aquí encuentras:
+          </p>
+          <ul class="text-sm md:text-base text-[var(--text-muted)] space-y-1">
+            <li>• Costillas al barril con salsa de la casa.</li>
+            <li>• Panceta y pollo al barril, suaves y llenos de sabor.</li>
+            <li>• Asados al carbón con acompañantes.</li>
+            <li>• Cortes premium para paladares exigentes.</li>
+          </ul>
+        </div>
+
+        <div class="bg-[var(--bg-card)]/90 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl space-y-4">
+          <h3 class="font-semibold text-lg md:text-xl mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-fire-flame-curved text-[var(--accent-strong)]"></i>
+            Info del local
+          </h3>
+
+          <div class="space-y-3 text-sm md:text-base text-[var(--text-muted)]">
+            <div>
+              <p class="font-semibold text-white flex items-center gap-2 mb-1">
+                <i class="fa-solid fa-location-dot text-[var(--accent)]"></i>
+                Dirección
+              </p>
+              <p>Barrio Las Vegas, calle Pablo Milanés.</p>
+              <p>Del gimnasio, 100 metros más adelante.</p>
+              <a href="https://maps.app.goo.gl/qZkmyBKGfm7tMsEi6?g_st=ipc"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-xs mt-1">
+                <i class="fa-solid fa-map-location-dot"></i>
+                Ver en Google Maps
+              </a>
+            </div>
+
+            <div>
+              <p class="font-semibold text-white flex items-center gap-2 mb-1">
+                <i class="fa-solid fa-phone text-[var(--accent)]"></i>
+                Teléfono / WhatsApp
+              </p>
+              <p>098 802 5075</p>
+            </div>
+
+            <div>
+              <p class="font-semibold text-white flex items-center gap-2 mb-1">
+                <i class="fa-brands fa-instagram text-pink-500"></i>
+                Redes sociales
+              </p>
+              <p>@puntoceroalbarril</p>
+            </div>
+
+            <div>
+              <p class="font-semibold text-white flex items-center gap-2 mb-1">
+                <i class="fa-solid fa-envelope text-[var(--accent)]"></i>
+                Correo electrónico
+              </p>
+              <p>troncosoje21@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENÚ DIGITAL -->
+    <section id="menu" class="py-10 md:py-14 bg-black/60 border-y border-slate-800">
+      <div class="max-w-6xl mx-auto px-4">
+
+        <div class="text-center mb-8">
+          <p class="title-font text-[var(--accent-strong)] text-sm tracking-[0.35em] uppercase mb-1">
+            Menú
+          </p>
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">
+            Nuestros Platos Estrellas
+          </h2>
+          <p class="text-sm md:text-base text-[var(--text-muted)] max-w-2xl mx-auto">
+            Elige tus platos, ajusta la cantidad y añádelos a tu pedido.  
+            Al finalizar, podrás decidir si es para mesa o domicilio y enviar todo por WhatsApp.
+          </p>
+        </div>
+
+        <div
+          id="product-list"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          <!-- Cards generadas por JS -->
+        </div>
+
+        <div class="text-center mt-8 text-xs md:text-sm text-[var(--text-muted)]">
+          <p>Cuando termines de elegir, toca el botón <strong>“Pedido”</strong> de arriba para finalizar la orden.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section id="ubicacion" class="py-10 md:py-14">
+      <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4 md:space-y-5">
+          <h2 class="text-2xl md:text-3xl font-bold">¿Dónde estamos?</h2>
+          <p class="text-sm md:text-base text-[var(--text-muted)]">
+            Estamos ubicados en el <strong>Barrio Las Vegas, calle Pablo Milanés</strong>, en Shushufindi.
+            Como referencia, <strong>del gimnasio, 100 metros más adelante</strong>.
+          </p>
+          <p class="text-sm md:text-base text-[var(--text-muted)]">
+            Puedes llegar directamente usando Google Maps con el siguiente enlace:
+          </p>
+          <a href="https://maps.app.goo.gl/qZkmyBKGfm7tMsEi6?g_st=ipc"
+            target="_blank"
+            class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-sm">
+            <i class="fa-solid fa-map-location-dot"></i>
+            Abrir ubicación en Google Maps
+          </a>
+          <p class="text-xs md:text-sm text-[var(--text-muted)] pt-2">
+            Si tienes dudas, también puedes escribirnos por WhatsApp al <strong>098 802 5075</strong>.
+          </p>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl h-64 md:h-80">
+          <iframe
+            src="https://www.google.com/maps?q=Punto%20Cero%20al%20Barril&output=embed"
+            class="w-full h-full border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-10 bg-black/80 border-t border-slate-800">
+      <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-[1.4fr,1fr] gap-8">
+        <div class="space-y-4 md:space-y-5">
+          <h2 class="text-2xl md:text-3xl font-bold">Contacto y pedidos</h2>
+          <p class="text-sm md:text-base text-[var(--text-muted)]">
+            Haz tu pedido, reserva una mesa o consulta por eventos especiales.  
+            Estamos para atenderte.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 text-sm md:text-base text-[var(--text-muted)]">
+            <div class="space-y-2">
+              <p class="font-semibold text-white flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                WhatsApp / Teléfono
+              </p>
+              <p>098 802 5075</p>
+              <a href="https://wa.me/593988025075?text=Hola%20quiero%20informaci%C3%B3n%20de%20Punto%20Cero%20al%20Barril"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-strong)] text-xs">
+                <i class="fa-brands fa-whatsapp"></i>
+                Enviar mensaje ahora
+              </a>
+            </div>
+
+            <div class="space-y-2">
+              <p class="font-semibold text-white flex items-center gap-2">
+                <i class="fa-brands fa-instagram text-pink-500"></i>
+                Redes sociales
+              </p>
+              <p>@puntoceroalbarril</p>
+            </div>
+
+            <div class="space-y-2">
+              <p class="font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-envelope text-[var(--accent)]"></i>
+                Correo electrónico
+              </p>
+              <p>troncosoje21@gmail.com</p>
+            </div>
+
+            <div class="space-y-2">
+              <p class="font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-location-dot text-[var(--accent)]"></i>
+                Dirección
+              </p>
+              <p>Barrio Las Vegas, calle Pablo Milanés,</p>
+              <p>del gimnasio 100 metros más adelante.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[var(--bg-card)] border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl space-y-4">
+          <h3 class="font-semibold text-lg md:text-xl mb-1">
+            ¿Listo para un asado épico?
+          </h3>
+          <p class="text-sm md:text-base text-[var(--text-muted)]">
+            Toca el botón para escribirnos por WhatsApp y hacer tu pedido
+            o reservar para hoy.
+          </p>
+          <a href="https://wa.me/593988025075?text=Hola%20quiero%20hacer%20un%20pedido%20en%20Punto%20Cero%20al%20Barril"
+            target="_blank"
+            class="btn-main inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-full text-sm md:text-base">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            Hacer pedido por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CHECKOUT -->
+  <main id="checkout-page" class="hidden relative z-10 py-14 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl md:text-4xl text-center text-white grill-glow-text mb-10 product-name">
+        Finalizar Pedido
+      </h2>
+
+      <div
+        id="cart-empty-message"
+        class="hidden text-center py-10 bg-[var(--bg-card)]/95 rounded-2xl border border-[var(--accent-strong)]/50 max-w-2xl mx-auto"
+      >
+        <i class="fas fa-shopping-basket text-gray-600 text-5xl mb-4"></i>
+        <p class="text-gray-300 text-lg mb-3">
+          Tu carrito de BBQ está vacío… todavía. 🔥
+        </p>
+        <button
+          onclick="showPage('home')"
+          class="mt-4 bg-[var(--accent-strong)] text-white text-sm md:text-base font-semibold py-3 px-8 rounded-full hover:bg-orange-500">
+          Ver menú
+        </button>
+      </div>
+      
+      <div id="cart-content" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div>
+          <h3 class="text-xl md:text-2xl text-white mb-5 product-name">
+            1. Modalidad y datos
+          </h3>
+          
+          <div class="mb-6">
+            <div class="flex flex-col sm:flex-row gap-3">
+              <label class="flex items-center bg-[var(--bg-card)]/90 p-3 rounded-xl border border-[var(--accent)]/60 cursor-pointer flex-1 transition-all hover:bg-[var(--bg-card)]">
+                <input
+                  type="radio"
+                  name="orderType"
+                  value="dineIn"
+                  checked
+                  class="mr-3 text-[var(--accent-strong)] focus:ring-[var(--accent-strong)] border-gray-700"
+                  id="radio-dine-in"
+                >
+                <span class="font-bold text-white text-sm md:text-base">
+                  <i class="fas fa-utensils mr-2 text-[var(--accent-strong)]"></i>
+                  Servir en mesa
+                </span>
+              </label>
+              <label class="flex items-center bg-[var(--bg-card)]/90 p-3 rounded-xl border border-[var(--accent)]/60 cursor-pointer flex-1 transition-all hover:bg-[var(--bg-card)]">
+                <input
+                  type="radio"
+                  name="orderType"
+                  value="delivery"
+                  class="mr-3 text-[var(--accent-strong)] focus:ring-[var(--accent-strong)] border-gray-700"
+                  id="radio-delivery"
+                >
+                <span class="font-bold text-white text-sm md:text-base">
+                  <i class="fas fa-motorcycle mr-2 text-[var(--accent-strong)]"></i>
+                  Entrega a domicilio
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <form id="order-form" class="space-y-4">
+            <div id="dine-in-fields" class="bg-white p-5 rounded-lg shadow-xl text-gray-800">
+              <div class="mb-4">
+                <label for="table-number" class="block text-gray-700 font-bold mb-2">
+                  Número de mesa
+                </label>
+                <input
+                  type="number"
+                  id="table-number"
+                  name="table-number"
+                  class="w-full px-3 py-2 border rounded-lg focus:ring-[var(--accent-strong)] focus:border-[var(--accent-strong)] text-sm"
+                  placeholder="Ej: 5"
+                  min="1"
+                  required
+                >
+              </div>
+              <div>
+                <label for="client-name-local" class="block text-gray-700 font-bold mb-2">
+                  Nombre (opcional)
+                </label>
+                <input
+                  type="text"
+                  id="client-name-local"
+                  name="client-name-local"
+                  class="w-full px-3 py-2 border rounded-lg focus:ring-[var(--accent-strong)] focus:border-[var(--accent-strong)] text-sm"
+                  placeholder="Tu nombre"
+                >
+              </div>
+            </div>
+
+            <div id="delivery-fields" class="bg-white p-5 rounded-lg shadow-xl text-gray-800 hidden">
+              <div class="mb-3">
+                <label for="name" class="block text-gray-700 font-bold mb-2">
+                  Nombre completo
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full px-3 py-2 border rounded-lg focus:ring-[var(--accent-strong)] focus:border-[var(--accent-strong)] text-sm"
+                  placeholder="Tu nombre"
+                  required
+                  disabled
+                >
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="block text-gray-700 font-bold mb-2">
+                  Número de WhatsApp
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="w-full px-3 py-2 border rounded-lg focus:ring-[var(--accent-strong)] focus:border-[var(--accent-strong)] text-sm"
+                  placeholder="Ej: 0999999999"
+                  required
+                  disabled
+                >
+              </div>
+              <div class="mb-3">
+                <label for="address" class="block text-gray-700 font-bold mb-2">
+                  Dirección de entrega
+                </label>
+                <textarea
+                  id="address"
+                  name="address"
+                  rows="3"
+                  class="w-full px-3 py-2 border rounded-lg focus:ring-[var(--accent-strong)] focus:border-[var(--accent-strong)] text-sm resize-none"
+                  placeholder="Calle, barrio, referencia..."
+                  required
+                  disabled
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <button
+                  type="button"
+                  id="share-location-btn-checkout"
+                  class="w-full bg-blue-600 text-white text-sm font-bold py-2.5 px-4 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
+                  disabled
+                >
+                  <i class="fas fa-map-marker-alt"></i>
+                  Compartir ubicación (opcional)
+                </button>
+                <p
+                  id="location-status-checkout"
+                  class="text-xs text-center text-green-600 font-semibold mt-2"
+                ></p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-5">
+            <h3 class="text-xl md:text-2xl text-white product-name">
+              2. Resumen de tu orden
+            </h3>
+            <button
+              id="clear-cart-btn"
+              title="Vaciar carrito"
+              class="text-red-400 hover:text-white text-xs md:text-sm font-semibold"
+              type="button"
+            >
+              Vaciar carrito
+            </button>
+          </div>
+          
+          <div
+            id="checkout-summary"
+            class="bg-[var(--bg-card)] p-5 rounded-lg shadow-xl border border-[var(--accent)]/50 text-sm md:text-base"
+          >
+          </div>
+          
+          <div class="bg-[var(--bg-card)] p-5 rounded-lg shadow-xl mt-7 border border-[var(--accent-strong)]/60 text-sm">
+            <h3 class="text-lg md:text-xl text-[var(--accent)] mb-3 font-bold product-name">
+              Información de pago
+            </h3>
+            <div class="bg-gray-900 border border-gray-700 text-gray-200 p-4 rounded-lg space-y-1">
+              <p>Aceptamos pagos en efectivo y transferencias.</p>
+              <p><strong>Banco:</strong> Pichincha</p>
+              <p><strong>Cuenta de ahorros:</strong> 2207791284</p>
+              <p><strong>A nombre de:</strong> Jhon Eduar Troncoso Betancourt</p>
+              <p><strong>C.I. / RUC:</strong> 2100950019</p>
+            </div>
+            <p class="mt-2 text-[11px] text-gray-400">
+              *Puedes adjuntar el comprobante por WhatsApp al confirmar tu pedido.
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            form="order-form"
+            id="submit-order-btn"
+            class="w-full bg-[var(--accent-strong)] text-white text-lg md:text-xl font-semibold py-3.5 rounded-full mt-7 hover:bg-orange-500 transition-colors flex items-center justify-center gap-2 shadow-2xl"
+          >
+            <i class="fab fa-whatsapp text-xl"></i>
+            Enviar pedido por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer
+    id="footer-contact"
+    class="bg-black/95 text-[var(--text-muted)] pt-10 pb-7 mt-14 border-t border-slate-800 relative z-10 text-sm"
+  >
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="grid md:grid-cols-3 gap-7 mb-6">
+        <div>
+          <h4 class="font-bold text-lg mb-2 text-[var(--accent)] product-name">
+            Contacto
+          </h4>
+          <a
+            href="https://wa.me/593988025075"
+            target="_blank"
+            class="inline-block hover:text-white transition-colors"
+          >
+            <i class="fab fa-whatsapp mr-2"></i>
+            +593 98 880 25075
+          </a>
+          <p class="mt-2">
+            <i class="fas fa-envelope mr-2"></i>
+            troncosoje21@gmail.com
+          </p>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-2 text-[var(--accent)] product-name">
+            Ubicación
+          </h4>
+          <a
+            href="https://maps.app.goo.gl/qZkmyBKGfm7tMsEi6?g_st=ipc"
+            target="_blank"
+            class="inline-block hover:text-white transition-colors"
+          >
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            Barrio Las Vegas, calle Pablo Milanés
+          </a>
+          <p>Del gimnasio, 100 metros más adelante.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-2 text-[var(--accent)] product-name">
+            Horario
+          </h4>
+          <p>Martes a domingo</p>
+          <p>12:00 pm - 10:00 pm</p>
+        </div>
+      </div>
+      <div class="pt-5 border-t border-gray-800 text-xs text-gray-500">
+        <p>&copy; <span id="year"></span> Punto Cero al Barril. Todos los derechos reservados.</p>
+        <p class="mt-2 text-[11px] text-gray-600">
+          Menú digital desarrollado para Punto Cero al Barril.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL NOTIFICACIÓN -->
+  <div
+    id="notification-modal"
+    class="fixed inset-0 bg-black/70 z-[1002] flex items-center justify-center p-4 opacity-0 pointer-events-none"
+  >
+    <div class="bg-[var(--bg-card)] rounded-xl p-7 text-center shadow-2xl max-w-sm w-full border border-[var(--accent-strong)] modal-inner scale-95">
+      <i class="fas fa-check-circle text-[var(--accent)] text-4xl mb-3"></i>
+      <h2 id="notification-message" class="text-lg md:text-xl font-bold text-white"></h2>
+      <button
+        id="close-notification-btn"
+        class="mt-5 bg-[var(--accent-strong)] text-white font-bold py-2.5 px-7 rounded-full hover:bg-orange-500 text-sm"
+      >
+        Listo
+      </button>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Año en footer
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+
+    // Productos (imágenes locales plato-1.jpg ... plato-5.jpg)
+    const products = [
+      { id: 1, name: 'Costillas al Barril con Moro', price: 7.50, img: 'plato-1.jpg', desc: 'Tiernas costillas de cerdo asadas en barril, servidas con moro, papa frita, maduro, chorizo y salsas de la casa.' },
+      { id: 2, name: 'Panceta Crujiente con Moro', price: 9.50, img: 'plato-2.jpg', desc: 'Panceta crocante acompañada de moro, papa frita, maduro, chorizo y salsas exclusivas de la casa.' },
+      { id: 3, name: 'Panceta Crujiente (Simple)', price: 7.50, img: 'plato-3.jpg', desc: 'Nuestra panceta crocante sin moro, acompañada de papa frita, maduro, chorizo y salsas.' },
+      { id: 4, name: 'Picanha Angus (300gr)', price: 16.00, img: 'plato-4.jpg', desc: '300 gramos de Picanha Angus a la parrilla, servida con papa frita, maduro y chorizo.' },
+      { id: 5, name: 'Bandeja Punto Cero (Picadita)', price: 22.00, img: 'plato-5.jpg', desc: 'Picadita para compartir (precio base). Pregunta por bandejas grandes: $32 y $52.' }
+    ];
+
+    // DOM
+    const productList           = document.getElementById('product-list');
+    const cartCountEl          = document.getElementById('cart-count');
+    const notificationModal    = document.getElementById('notification-modal');
+    const notificationMessage  = document.getElementById('notification-message');
+    const closeNotificationBtn = document.getElementById('close-notification-btn');
+    const orderForm            = document.getElementById('order-form');
+    const checkoutSummary      = document.getElementById('checkout-summary');
+    const clearCartBtn         = document.getElementById('clear-cart-btn');
+    const cartEmptyMessage     = document.getElementById('cart-empty-message');
+    const cartContent          = document.getElementById('cart-content');
+    const shareLocationBtn     = document.getElementById('share-location-btn-checkout');
+    const locationStatus       = document.getElementById('location-status-checkout');
+
+    const dineInFields   = document.getElementById('dine-in-fields');
+    const deliveryFields = document.getElementById('delivery-fields');
+    const radioDineIn    = document.getElementById('radio-dine-in');
+    const radioDelivery  = document.getElementById('radio-delivery');
+
+    const nameInput            = document.getElementById('name');
+    const phoneInput           = document.getElementById('phone');
+    const addressInput         = document.getElementById('address');
+    const tableNumberInput     = document.getElementById('table-number');
+    const clientNameLocalInput = document.getElementById('client-name-local');
+
+    let cart = {};
+    let sharedLocation = null;
+    let orderType = 'dineIn';
+
+    function setInputRequired(input, isRequired) {
+      input.required = isRequired;
+      input.disabled = !isRequired;
+    }
+
+    function formatMoney(value) {
+      return '$' + value.toFixed(2);
+    }
+
+    function handleOrderTypeChange() {
+      orderType = document.querySelector('input[name="orderType"]:checked').value;
+      sharedLocation = null;
+      locationStatus.textContent = '';
+      shareLocationBtn.disabled = (orderType === 'dineIn');
+
+      if (orderType === 'dineIn') {
+        dineInFields.classList.remove('hidden');
+        deliveryFields.classList.add('hidden');
+
+        setInputRequired(tableNumberInput, true);
+        setInputRequired(nameInput, false);
+        setInputRequired(phoneInput, false);
+        setInputRequired(addressInput, false);
+      } else {
+        dineInFields.classList.add('hidden');
+        deliveryFields.classList.remove('hidden');
+
+        setInputRequired(tableNumberInput, false);
+        setInputRequired(nameInput, true);
+        setInputRequired(phoneInput, true);
+        setInputRequired(addressInput, true);
+      }
+    }
+
+    function renderProducts() {
+      productList.innerHTML = '';
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card card-plato bg-[var(--bg-card)] rounded-xl overflow-hidden flex flex-col shadow-lg border border-slate-800';
+        card.innerHTML = `
+          <div class="image-box">
+            <img
+              src="${product.img}"
+              alt="${product.name}"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x224/2C1E18/FCD34D?text=${encodeURIComponent(product.name)}';"
+            >
+          </div>
+          <div class="p-5 flex flex-col flex-1 text-center">
+            <h3 class="text-xl md:text-2xl font-bold mb-2 text-[var(--accent)] product-name">${product.name}</h3>
+            <p class="text-xs md:text-sm flex-1 text-[var(--text-muted)] mb-3">${product.desc}</p>
+            <p class="font-extrabold text-[var(--accent-strong)] mt-2 text-lg md:text-xl">${formatMoney(product.price)}</p>
+            <div class="flex items-center justify-center space-x-4 my-4">
+              <button class="quantity-btn minus-btn bg-gray-700/60 text-white rounded-full w-8 h-8 text-lg font-bold hover:bg-[var(--accent-strong)] transition-colors">-</button>
+              <span class="quantity-value text-xl font-bold text-white">1</span>
+              <button class="quantity-btn plus-btn bg-gray-700/60 text-white rounded-full w-8 h-8 text-lg font-bold hover:bg-[var(--accent-strong)] transition-colors">+</button>
+            </div>
+            <button
+              class="add-to-cart-btn bg-[var(--accent-strong)] text-white font-bold py-2.5 px-4 rounded-full hover:bg-orange-500 transition-colors text-sm md:text-base flex items-center justify-center gap-2"
+              data-id="${product.id}"
+              type="button"
+            >
+              <i class="fas fa-plus"></i>
+              Añadir
+            </button>
+          </div>
+        `;
+        productList.appendChild(card);
+      });
+    }
+
+    function addToCart(productId, quantity = 1) {
+      const idStr = String(productId);
+      if (cart[idStr]) {
+        cart[idStr].quantity += quantity;
+      } else {
+        const product = products.find(p => p.id == productId);
+        if (!product) return;
+        cart[idStr] = { ...product, quantity };
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+      cartCountEl.textContent = totalItems;
+      updateCheckoutPage();
+    }
+
+    function updateCheckoutPage() {
+      const cartHasItems = Object.keys(cart).length > 0;
+
+      if (!cartHasItems) {
+        cartEmptyMessage.classList.remove('hidden');
+        cartContent.classList.add('hidden');
+        checkoutSummary.innerHTML = `
+          <p class="text-gray-300 text-sm">
+            Aún no has agregado platos a tu pedido.
+          </p>
+        `;
+        return;
+      }
+
+      cartEmptyMessage.classList.add('hidden');
+      cartContent.classList.remove('hidden');
+
+      let subtotal = 0;
+      let html = '';
+
+      for (const id in cart) {
+        const item = cart[id];
+        const itemSubtotal = item.price * item.quantity;
+        subtotal += itemSubtotal;
+
+        html += `
+          <div class="py-3 border-b border-gray-700 last:border-b-0 flex justify-between items-center text-gray-200">
+            <div class="flex items-center text-sm md:text-base">
+              <span class="font-bold text-[var(--accent)] mr-2">${item.quantity}x</span>
+              <span class="font-semibold">${item.name}</span>
+            </div>
+            <span class="font-bold text-white text-sm md:text-base">${formatMoney(itemSubtotal)}</span>
+          </div>
+        `;
+      }
+
+      html += `
+        <div class="mt-4 border-t border-[var(--accent-strong)] pt-4 space-y-3 text-sm md:text-base">
+          <div class="flex justify-between text-gray-200">
+            <span>Subtotal</span>
+            <span>${formatMoney(subtotal)}</span>
+          </div>
+          <div class="flex justify-between font-extrabold text-lg md:text-xl text-[var(--accent)]">
+            <span>Total a pagar</span>
+            <span>${formatMoney(subtotal)}</span>
+          </div>
+        </div>
+      `;
+
+      checkoutSummary.innerHTML = html;
+    }
+
+    productList.addEventListener('click', (e) => {
+      const card = e.target.closest('.product-card');
+      if (!card) return;
+
+      const qtySpan = card.querySelector('.quantity-value');
+
+      const qtyBtn = e.target.closest('.quantity-btn');
+      if (qtyBtn && qtySpan) {
+        let currentValue = parseInt(qtySpan.textContent, 10);
+        if (qtyBtn.classList.contains('plus-btn')) {
+          currentValue++;
+        } else if (qtyBtn.classList.contains('minus-btn') && currentValue > 1) {
+          currentValue--;
+        }
+        qtySpan.textContent = String(currentValue);
+        return;
+      }
+
+      const addBtn = e.target.closest('.add-to-cart-btn');
+      if (addBtn && qtySpan) {
+        const id = addBtn.dataset.id;
+        const quantity = parseInt(qtySpan.textContent, 10);
+        addToCart(id, quantity);
+
+        const product = products.find(p => p.id == Number(id));
+        const nombre = product ? product.name : 'Producto';
+        showNotification(`${quantity} ${nombre}(s) añadido(s) al carrito 🔥`);
+        qtySpan.textContent = '1';
+      }
+    });
+
+    radioDineIn.addEventListener('change', handleOrderTypeChange);
+    radioDelivery.addEventListener('change', handleOrderTypeChange);
+
+    clearCartBtn.addEventListener('click', () => {
+      cart = {};
+      updateCartUI();
+      showNotification('El carrito ha sido vaciado.');
+    });
+
+    shareLocationBtn.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        locationStatus.textContent = 'La geolocalización no es soportada en este dispositivo.';
+        return;
+      }
+
+      locationStatus.textContent = 'Obteniendo ubicación...';
+      shareLocationBtn.classList.add('bg-yellow-600');
+      shareLocationBtn.classList.remove('bg-blue-600');
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          sharedLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
+          locationStatus.textContent = '✅ Ubicación añadida al pedido.';
+          shareLocationBtn.classList.remove('bg-yellow-600');
+          shareLocationBtn.classList.add('bg-green-600');
+        },
+        () => {
+          locationStatus.textContent = '❌ No se pudo obtener la ubicación. Ingresa la dirección manualmente.';
+          shareLocationBtn.classList.remove('bg-yellow-600');
+          shareLocationBtn.classList.add('bg-blue-600');
+        }
+      );
+    });
+
+    orderForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (Object.keys(cart).length === 0) {
+        showNotification('Tu carrito está vacío. Agrega al menos un plato antes de enviar el pedido.');
+        return;
+      }
+
+      const currentOrderType = document.querySelector('input[name="orderType"]:checked').value;
+      let message = '¡Hola Punto Cero al Barril! 🔥 Quisiera hacer el siguiente pedido:\n\n';
+
+      let total = 0;
+      for (const id in cart) {
+        const item = cart[id];
+        message += `• ${item.quantity}x - ${item.name}\n`;
+        total += item.price * item.quantity;
+      }
+
+      message += `\nTotal aproximado: *${formatMoney(total)}*\n\n`;
+
+      if (currentOrderType === 'dineIn') {
+        const mesa = (tableNumberInput.value || '').trim();
+        const nombreLocal = (clientNameLocalInput.value || '').trim();
+
+        if (!mesa) {
+          showNotification('Por favor, ingresa tu número de mesa.');
+          return;
+        }
+
+        message += '*Modalidad:* Servir en mesa 🍽️\n';
+        message += `*Mesa:* ${mesa}\n`;
+        if (nombreLocal) {
+          message += `*Nombre:* ${nombreLocal}\n`;
+        }
+      } else {
+        const name    = (nameInput.value || '').trim();
+        const phone   = (phoneInput.value || '').trim();
+        const address = (addressInput.value || '').trim();
+
+        if (!name || !phone || !address) {
+          showNotification('Para domicilio, completa Nombre, WhatsApp y Dirección.');
+          return;
+        }
+
+        message += '*Modalidad:* Entrega a domicilio 🛵\n';
+        message += `*Nombre:* ${name}\n`;
+        message += `*WhatsApp:* ${phone}\n`;
+        message += `*Dirección:* ${address}\n`;
+        if (sharedLocation) {
+          message += `*Ubicación (Maps):* ${sharedLocation}\n`;
+        } else {
+          message += '*Ubicación:* No enviada (puedo enviar luego por chat).\n';
+        }
+      }
+
+      message += '\nPor favor, confirmen el total y el tiempo estimado. 🙏🔥';
+
+      const whatsappNumber = '593988025075';
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+      window.open(whatsappUrl, '_blank');
+
+      cart = {};
+      sharedLocation = null;
+      orderForm.reset();
+      handleOrderTypeChange();
+      updateCartUI();
+      showPage('home');
+      showNotification('¡Pedido enviado! Revisa tu WhatsApp para la confirmación de Punto Cero al Barril.');
+    });
+
+    const pages = document.querySelectorAll('main');
+    window.showPage = (pageId) => {
+      pages.forEach(page => page.classList.add('hidden'));
+      const target = document.getElementById(`${pageId}-page`);
+      if (target) {
+        target.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      if (pageId === 'checkout') {
+        updateCheckoutPage();
+      }
+    };
+
+    function showNotification(message) {
+      notificationMessage.textContent = message;
+      notificationModal.classList.remove('opacity-0', 'pointer-events-none');
+      notificationModal.querySelector('.modal-inner').classList.remove('scale-95');
+    }
+
+    function hideNotification() {
+      notificationModal.classList.add('opacity-0', 'pointer-events-none');
+      notificationModal.querySelector('.modal-inner').classList.add('scale-95');
+    }
+
+    closeNotificationBtn.addEventListener('click', hideNotification);
+    notificationModal.addEventListener('click', (e) => {
+      if (e.target === notificationModal) hideNotification();
+    });
+
+    // Inicializar
+    renderProducts();
+    updateCartUI();
+    handleOrderTypeChange();
+  });
+  </script>
+</body>
+</html>
